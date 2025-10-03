@@ -8,7 +8,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { MapPin, Calendar, Users, ArrowRight, ArrowLeft, User, UserPlus, Heart, Mountain, Landmark, Utensils, Palette, Sparkles, Loader as Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
-import { supabase, POI } from "@/lib/supabase";
+import { supabase } from "@/integrations/supabase/client";
+import { POI } from "@/types/database";
 import { toast } from "sonner";
 
 const tripTypes = [

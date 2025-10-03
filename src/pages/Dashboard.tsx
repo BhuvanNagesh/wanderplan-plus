@@ -6,7 +6,8 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Separator } from '@/components/ui/separator';
 import { MapPin, Plus, Users, Shield, Download, Settings, LogOut, Calendar, TrendingUp, Bell, Chrome as Home, ChevronLeft, ChevronRight } from 'lucide-react';
-import { supabase, Trip } from '@/lib/supabase';
+import { supabase } from '@/integrations/supabase/client';
+import { Trip } from '@/types/database';
 import { TripProgressVisualization } from '@/components/TripProgressVisualization';
 import { cn } from '@/lib/utils';
 
