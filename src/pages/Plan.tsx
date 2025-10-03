@@ -115,7 +115,8 @@ export default function Plan() {
   const [destination, setDestination] = useState("");
   const [tripType, setTripType] = useState("");
   const [travelers, setTravelers] = useState("2");
-  const [dates, setDates] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const [selectedMoods, setSelectedMoods] = useState<string[]>([]);
   const [selectedPOIs, setSelectedPOIs] = useState<string[]>([]);
 
@@ -139,7 +140,7 @@ export default function Plan() {
     if (step === 1 && destination && tripType) {
       setStep(2);
     } else if (step === 2 && selectedPOIs.length > 0) {
-      navigate("/itinerary", { state: { destination, tripType, travelers, dates, selectedPOIs } });
+      navigate("/itinerary", { state: { destination, tripType, travelers, startDate, endDate, selectedPOIs } });
     }
   };
 
@@ -246,32 +247,47 @@ export default function Plan() {
                 {/* Dates and Travelers */}
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <Label htmlFor="dates">Travel Dates</Label>
+                    <Label htmlFor="startDate">Start Date</Label>
                     <div className="relative">
                       <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                       <Input
-                        id="dates"
+                        id="startDate"
                         type="date"
                         className="pl-10"
-                        value={dates}
-                        onChange={(e) => setDates(e.target.value)}
+                        value={startDate}
+                        onChange={(e) => setStartDate(e.target.value)}
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="travelers">Number of Travelers</Label>
+                    <Label htmlFor="endDate">End Date</Label>
                     <div className="relative">
-                      <Users className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                      <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
                       <Input
-                        id="travelers"
-                        type="number"
-                        placeholder="2"
+                        id="endDate"
+                        type="date"
                         className="pl-10"
-                        value={travelers}
-                        onChange={(e) => setTravelers(e.target.value)}
+                        value={endDate}
+                        onChange={(e) => setEndDate(e.target.value)}
+                        min={startDate}
                       />
                     </div>
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="travelers">Number of Travelers</Label>
+                  <div className="relative">
+                    <Users className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                    <Input
+                      id="travelers"
+                      type="number"
+                      placeholder="2"
+                      className="pl-10"
+                      value={travelers}
+                      onChange={(e) => setTravelers(e.target.value)}
+                    />
                   </div>
                 </div>
 
